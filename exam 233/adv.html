@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <a href="adv2.html" class="next-page-link">Next Page</a>
+
+    <title>Image and Video Gallery</title>
+    <style>
+        
+.next-page-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #000305;
+    color: #f0e9e9; 
+    text-decoration: none; 
+    border-radius: 5px; 
+    transition: background-color 0.3s; 
+}
+
+
+.next-page-link:hover {
+    background-color: #f30c0c; 
+}
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #270000;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 0vh;
+        }
+
+        h1 {
+            margin: 20px 0;
+           
+           
+        }
+
+        .media-container {
+            text-align: center;
+            margin-bottom: 20px;
+            display: flex; 
+            flex-direction: column;
+            align-items: center;
+        }
+
+        img,
+        iframe {
+            max-width: 50%;
+            height: auto;
+          margin: 0 10px; 
+        }
+
+        button {
+            background-color: #010407;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #f3250a;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image and Video Gallery</h1>
+
+    <div class="media-container" id="image-container1">
+        <img id="image1" src="movie1.jpg" alt="Image 1">
+        <button onclick="changeImage(1)">Change Image</button>
+    </div>
+    <div class="media-container" id="image-container2">
+        <img id="image2" src="movie2.jpg" alt="Image 2">
+        <button onclick="changeImage(2)">Change Image</button>
+    </div>
+    <div class="media-container" id="image-container3">
+        <img id="image3" src="movie3.jpg" alt="Image 3">
+        <button onclick="changeImage(3)">Change Image</button>
+    </div>
+
+    <div class="media-container" id="video-container1">
+        <iframe id="video1" width="320" height="240" src="https://www.youtube.com/embed/eHp3MbsCbMg" frameborder="0" allowfullscreen></iframe>
+        <button onclick="changeVideo(1)">Change Video</button>
+    </div>
+    <div class="media-container" id="video-container2">
+        <iframe id="video2" width="320" height="240" src="https://www.youtube.com/embed/x_me3xsvDgk" frameborder="0" allowfullscreen></iframe>
+        <button onclick="changeVideo(2)">Change Video</button>
+    </div>
+    <div class="media-container" id="video-container3">
+        <iframe id="video3" width="320" height="240" src="https://www.youtube.com/embed/BmllggGO4pM" frameborder="0" allowfullscreen></iframe>
+        <button onclick="changeVideo(3)">Change Video</button>
+    </div>
+
+    <script>
+        const imageUrls = ["image1.jpg", "image2.jpg", "image3.jpg"];
+        const videoUrls = [
+            "https://www.youtube.com/embed/eHp3MbsCbMg",
+            "https://www.youtube.com/embed/x_me3xsvDgk",
+            "https://www.youtube.com/embed/BmllggGO4pM"
+        ];
+
+        let currentImageIndex = [0, 0, 0];
+        let currentVideoIndex = [0, 0, 0];
+
+        function changeImage(containerIndex) {
+            currentImageIndex[containerIndex - 1] = (currentImageIndex[containerIndex - 1] + 1) % imageUrls.length;
+            const imageElement = document.getElementById(`image${containerIndex}`);
+            imageElement.src = imageUrls[currentImageIndex[containerIndex - 1]];
+        }
+
+        function changeVideo(containerIndex) {
+            currentVideoIndex[containerIndex - 1] = (currentVideoIndex[containerIndex - 1] + 1) % videoUrls.length;
+            const videoContainer = document.getElementById(`video-container${containerIndex}`);
+
+            const newIframe = document.createElement("iframe");
+            newIframe.width = "320";
+            newIframe.height = "240";
+            newIframe.src = videoUrls[currentVideoIndex[containerIndex - 1]];
+            newIframe.frameBorder = "0";
+            newIframe.allowFullscreen = true;
+
+            const oldIframe = videoContainer.querySelector("iframe");
+            videoContainer.replaceChild(newIframe, oldIframe);
+        }
+    </script>
+</body>
+</html>

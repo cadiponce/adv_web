@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript events</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0e0d0d;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-box {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .box {
+            width: 45%;
+            height: 100px;
+            background-color: lightblue;
+            margin: 10px 0;
+            text-align: center;
+            line-height: 100px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .box:hover {
+            background-color: lightcoral;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .animate {
+            animation-name: exampleAnimation;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes exampleAnimation {
+            0% { background-color: lightblue; }
+            50% { background-color: lightcoral; }
+            100% { background-color: lightblue; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Javascript Event</h1>
+
+        <div class="event-box">
+           
+            <div class="box" id="clickBox" onclick="handleEvent('click')">Click Me</div>
+
+          
+            <input type="text" id="blurInput" onblur="handleEvent('blur')" placeholder="Blur Example">
+
+            <input type="text" id="changeInput" onchange="handleEvent('change')" placeholder="Change Example">
+
+           
+            <div class="box" id="dblClickBox" ondblclick="handleEvent('double click')">Double Click Me</div>
+
+            <input type="text" id="focusInput" onfocusin="handleEvent('focus in')" onfocusout="handleEvent('focus out')" placeholder="Focus Example">
+
+            <div class="box" id="mouseOverBox" onmouseover="handleEvent('mouse over')">Mouse Over Me</div>
+
+            
+            <div class="box" id="resizeBox" onresize="handleEvent('resize')">Resize Me</div>
+
+    
+            <div class="box animate" id="animationBox" onanimationstart="handleEvent('animation start')" onanimationend="handleEvent('animation end')">Animation</div>
+        </div>
+    </div>
+
+    <script>
+        
+        function handleEvent(eventName) {
+            alert(`Event: ${eventName}`);
+        }
+    </script>
+</body>
+</html>
